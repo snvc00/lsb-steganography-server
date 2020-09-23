@@ -14,15 +14,11 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
-app.all('/', function(request, response, next) {
-    response.header("Access-Control-Allow-Origin", "*");
-    response.header("Access-Control-Allow-Headers", "X-Requested-With");
-    next();
-});
-
 const TEMP_FILE = 'encoded.png';
 
 app.get("/encoded-image", (request, response) => {
+    response.header("Access-Control-Allow-Origin", "*");
+    response.header("Access-Control-Allow-Headers", "X-Requested-With");
     var stream = fs.createReadStream(TEMP_FILE);
     stream.on('open', () => {
         response.set('Content-Type', 'image/png');
@@ -32,6 +28,8 @@ app.get("/encoded-image", (request, response) => {
 });
 
 app.post("/encode", (request, response) => {
+    response.header("Access-Control-Allow-Origin", "*");
+    response.header("Access-Control-Allow-Headers", "X-Requested-With");
     if (!request.files)
         response.send({error: 'No file available'});
 
@@ -60,6 +58,8 @@ app.post("/encode", (request, response) => {
 });
 
 app.post("/decode", (request, response) => {
+    response.header("Access-Control-Allow-Origin", "*");
+    response.header("Access-Control-Allow-Headers", "X-Requested-With");
     if (!request.files)
         response.send({error: 'No file available'});
     
