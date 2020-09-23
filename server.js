@@ -14,6 +14,11 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
+app.all('*', (request, response, next) => {
+    response.header("Access-Control-Allow-Origin", "*");
+    next();
+});
+
 const TEMP_FILE = 'encoded.png';
 
 app.get("/encoded-image", (request, response) => {
