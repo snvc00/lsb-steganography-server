@@ -2,7 +2,10 @@ const express = require('express');
 const fileUpload = require('express-fileupload');
 const cors = require('cors');
 
+require('dotenv').config();
+
 const app = express();
+const port = process.env.PORT || 4000;
 
 app.use(fileUpload({
     createParentPath: true
@@ -24,6 +27,6 @@ app.use('/encode', encode);
 app.use('/decode', decode);
 app.use('/encoded-image', encodedImage);
 
-app.listen(4000, () => {
-    console.log('Server running on port 4000');
+app.listen(port, () => {
+    console.log(`Server running on port ${port}`);
 });
