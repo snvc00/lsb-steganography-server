@@ -14,8 +14,6 @@ const encode = (message, imageBitmapData) => {
         for (let i = 0, j = 0; i < ENCODE_BIT_TO_PIXELS; i+=4, ++j) {
             if (encodeStr[j] === '0' && !tools.isEven(imageBitmapData[i]) ||
                 encodeStr[j] === '1' && tools.isEven(imageBitmapData[i])) {
-                
-                    //! implemented with if statement
                 imageBitmapData[i] < 254 ? imageBitmapData[i]++ : imageBitmapData[i]--;
             }
         }
